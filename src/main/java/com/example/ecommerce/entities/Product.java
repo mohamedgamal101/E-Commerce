@@ -20,12 +20,12 @@ public class Product
     @Column(nullable = false)
     private double price;
 
+    @Column(nullable = false)
+    private int stock;
 
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            })
+
+
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "product_category",
             joinColumns = { @JoinColumn(name = "product_id") },
             inverseJoinColumns = { @JoinColumn(name = "category_id") })
@@ -35,28 +35,6 @@ public class Product
     public Product() {
 
     }
-
-    public Product(String name, String description, double price) {
-        this.name = name;
-        this.description = description;
-        this.price = price;
-    }
-
-//    public void addCategory(Category category) {
-//        this.categories.add(category);
-//        category.get;
-//    }
-//
-//    public void removeCategory(long categoryId) {
-//        Category category = this.categories.stream().filter(t -> t.getId() == categoryId).findFirst().orElse(null);
-//        if (category != null) {
-//            this.categories.remove(category);
-//            category.getCategories.remove(this);
-//        }
-//    }
-
-
-
 
 
     public long getId() {
@@ -91,12 +69,30 @@ public class Product
         this.price = price;
     }
 
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
+    }
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price +
+                ", stock=" + stock +
+                ", categories=" + categories +
                 '}';
     }
 }

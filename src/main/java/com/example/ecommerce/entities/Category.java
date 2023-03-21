@@ -19,18 +19,11 @@ public class Category {
 
 
     @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            },
             mappedBy = "categories")
     @JsonIgnore
     private Set<Product> products = new HashSet<>();
 
-    public Category(long id, String name) {
-
-        this.id = id;
-        this.name = name;
+    public Category() {
     }
 
 
@@ -54,4 +47,11 @@ public class Category {
     }
 
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

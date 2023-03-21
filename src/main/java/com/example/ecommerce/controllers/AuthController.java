@@ -6,7 +6,6 @@ import com.example.ecommerce.dtos.AuthRequest;
 import com.example.ecommerce.dtos.AuthResponse;
 import com.example.ecommerce.entities.User;
 import com.example.ecommerce.services.SecurityService;
-import com.example.ecommerce.services.SecurityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.security.authentication.*;
