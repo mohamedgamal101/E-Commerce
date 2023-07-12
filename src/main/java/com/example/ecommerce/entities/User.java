@@ -80,4 +80,7 @@ public class User  implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+    public UserDetails orElseThrow(Object o) {
+        return null;
+    }
 }

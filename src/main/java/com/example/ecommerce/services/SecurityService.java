@@ -7,4 +7,5 @@ import com.example.ecommerce.entities.User;
 public interface SecurityService {
     public AuthResponse login(AuthRequest request);
     public User register(AuthRequest request);
+    public AuthResponse renewToken(AuthRequest request);
 }

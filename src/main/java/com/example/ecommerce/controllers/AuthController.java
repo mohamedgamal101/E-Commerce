@@ -18,24 +18,29 @@ public class AuthController {
     @Autowired
     SecurityService securityService;
 
-
     @PostMapping("login")
     public ResponseEntity<?> login(@RequestBody @Valid AuthRequest request) {
         try {
             AuthResponse response = securityService.login(request);
             return ResponseEntity.ok().body(response);
-
         } catch (BadCredentialsException ex) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
 
     @PostMapping("register")
-    public  ResponseEntity<?> register(@RequestBody @Valid AuthRequest request)
-    {
+    public ResponseEntity<?> register(@RequestBody @Valid AuthRequest request) {
         User registeredUser = securityService.register(request);
-        return ResponseEntity.ok().body(String.format("User Success With Email [ %s ] Please Try To Login ",request.getEmail()));
+        return ResponseEntity.ok().body(String.format("User registered with email [%s]. Please try to login.", request.getEmail()));
     }
 
-
+    @PostMapping("renew")
+    public ResponseEntity<?> renew(@RequestBody @Valid AuthRequest request) {
+        try {
+            AuthResponse response = securityService.renewToken(request);
+            return ResponseEntity.ok().body(response);
+        } catch (BadCredentialsException ex) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+    }
 }
